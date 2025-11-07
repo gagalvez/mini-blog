@@ -15,7 +15,7 @@ export default function Navbar() {
         </li>
         <li>
           <Link to="/create" className="hover:text-gray-200">
-            Crear Post
+            Create new post
           </Link>
         </li>
       </ul>

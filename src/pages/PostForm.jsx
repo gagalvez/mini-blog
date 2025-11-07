@@ -1,15 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function PostForm({ setPosts }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
+
     e.preventDefault();
     const newPost = { id: Date.now(), title, content };
     setPosts((prev) => [...prev, newPost]);
     setTitle("");
     setContent("");
+    navigate("/"); 
   }
 
   return (
