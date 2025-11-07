@@ -7,16 +7,15 @@ import PostDetailPage from "./pages/PostDetailPage";
 
 function App() {
   const [posts, setPosts] = useState([
-    { id: 1, title: "Primer post", content: "Contenido del primer post" },
-    { id: 2, title: "Segundo post", content: "Contenido del segundo post" },
   ]);
+
 
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
         <Route path="/" element={<PostListPage posts={posts} />} />
-        <Route path="/create" element={<PostForm />} />
+        <Route path="/create" element={<PostForm setPosts={setPosts} />} />
         <Route path="/post/:id" element={<PostDetailPage />} />
       </Routes>
     </BrowserRouter>

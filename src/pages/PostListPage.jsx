@@ -1,12 +1,20 @@
 export default function PostListPage({ posts }) {
   return (
-    <section className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Lista de posts</h1>
-      <ul className="space-y-3">
+    <section className="max-w-3xl mx-auto my-10 p-8 bg-white dark:bg-gray-100 rounded-2xl shadow-lg border border-gray-300">
+      <h1 className="text-3xl font-bold mb-6 text-gray-800 text-center">
+        Post list
+      </h1>
+
+      <ul className="space-y-6">
         {posts.map((post) => (
-          <li key={post.id} className="border-b pb-2">
-            <h2 className="text-lg font-semibold">{post.title}</h2>
-            <p>{post.content}</p>
+          <li
+            key={post.id}
+            className="p-5 border border-gray-200 rounded-xl hover:shadow-md transition-shadow duration-200 bg-gray-50"
+          >
+            <h2 className="text-xl font-semibold text-blue-700 mb-2">
+              {post.title}
+            </h2>
+            <p className="text-gray-700 leading-relaxed">{post.content}</p>
           </li>
         ))}
       </ul>
