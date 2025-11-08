@@ -9,12 +9,19 @@ function App() {
   const [posts, setPosts] = useState([
   ]);
 
+  function deletePost(id) {
+    setPosts(posts.filter((post) => post.id !== id));
+  }
+
 
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<PostListPage posts={posts} />} />
+        <Route
+          path="/"
+          element={<PostListPage posts={posts} deletePost={deletePost} />}
+        />
         <Route path="/create" element={<PostForm setPosts={setPosts} />} />
         <Route path="/post/:id" element={<PostDetailPage />} />
       </Routes>
