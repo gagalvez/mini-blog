@@ -22,10 +22,17 @@ function App() {
           path="/"
           element={<PostListPage posts={posts} deletePost={deletePost} />}
         />
-        <Route path="/create" element={<PostForm setPosts={setPosts} />} />
+        <Route
+          path="/create"
+          element={<PostForm posts={posts} setPosts={setPosts} />}
+        />
         <Route
           path="/post/:id"
           element={<PostDetailPage posts={posts} deletePost={deletePost} />}
+        />
+        <Route
+          path="/edit/:id"
+          element={<PostForm posts={posts} setPosts={setPosts} />}
         />
       </Routes>
     </BrowserRouter>

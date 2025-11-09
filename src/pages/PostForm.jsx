@@ -1,19 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-export default function PostForm({ setPosts }) {
+export default function PostForm({ posts, setPosts }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const { id } = useParams();
+  const edit =!!id;
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const newPost = { id: Date.now(), title, content };
-    setPosts((prev) => [...prev, newPost]);
-    setTitle("");
-    setContent("");
-    navigate("/"); 
-  }
+
+ function handleSubmit(e) {
+   e.preventDefault();
+
+   if (edit) {
+     const updatedPosts = posts.map((p) =>
+       p.id === Number(id) ? { ...p, title, content } : p
+     );
+     setPosts(updatedPosts);
+   } else {
+     const newPost = { id: Date.now(), title, content };
+     setPosts((prev) => [...prev, newPost]);
+   }
+
+   setTitle("");
+   setContent("");
+   navigate("/");
+ }
+
+  useEffect(() => {
+    if (id) {
+      const post = posts.find((p) => p.id === Number(id));
+      if (post) {
+        setTitle(post.title);
+        setContent(post.content);
+      }
+    }
+  }, [id, posts]);
+
 
   return (
     <form onSubmit={handleSubmit} className="p-6 space-y-4">

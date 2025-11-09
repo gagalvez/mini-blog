@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function PostDetailPage({ posts, deletePost }) {
   const { id } = useParams();
@@ -20,12 +20,21 @@ export default function PostDetailPage({ posts, deletePost }) {
       <p className="text-gray-700 leading-relaxed mb-6">{post.content}</p>
       <p className="text-gray-500 text-sm mb-4">ID: {post.id}</p>
 
-      <button
-        onClick={() => deletePost(post.id)}
-        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Delete Post
-      </button>
+      <div className="flex gap-3">
+        <button
+          onClick={() => deletePost(post.id)}
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Delete Post
+        </button>
+
+        <Link
+          to={`/edit/${post.id}`}
+          className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Edit Post
+        </Link>
+      </div>
     </section>
   );
 }
